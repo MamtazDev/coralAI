@@ -13,12 +13,12 @@ const Home = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   return (
     <>
-      <div className="container mx-auto my-[10px] h-screen  shadow-2xl grid grid-cols-3">
-        <div className="col-span-2 p-[25px]">
+      <div className="container mx-auto my-[30px] h-[90vh] mainBox  grid grid-cols-5">
+        <div className="col-span-3 p-[25px]">
           <ImageContaienr setFeedbackModal={setFeedbackModal} />
           <ChartContainer />
         </div>
-        <div className="border-l border-[#cccccc] ">
+        <div className="border-l col-span-2 border-[#cccccc] ">
           <div className="flex items-center gap-4 p-[25px] border-b border-[#cccccc] mb-3">
             <FaArrowLeft className="text-[26px] font-[700]" />
             <p className="text-2xl font-[700]">Live Coral Cover</p>

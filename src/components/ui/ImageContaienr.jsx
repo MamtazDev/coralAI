@@ -8,7 +8,7 @@ const ImageContaienr = ({ setFeedbackModal }) => {
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center gap-2">
           <RiCloseFill className="text-[26px] font-[700]" />
-          <p className="text-xl font-[700]">Image1.png</p>
+          <p className="text-[20px] font-[700]">Image1.png</p>
         </div>
 
         <button
@@ -19,7 +19,7 @@ const ImageContaienr = ({ setFeedbackModal }) => {
         </button>
       </div>
 
-      <div className="h-[400px]">
+      <div className="h-[300px]">
         <img src={coverPic} className="object-cover h-full w-full" alt="" />
       </div>
       <p className="mt-3 text-[#b8b7bf] font-[600]">
