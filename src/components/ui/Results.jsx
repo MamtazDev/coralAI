@@ -3,7 +3,7 @@ import React from "react";
 const Results = () => {
   return (
     <div className="p-5 ">
-      <div className="p-4 shadow-lg rounded-[6px]">
+      <div className="p-4 resultBox rounded-[6px]">
         <h5 className="font-[700] text-lg mb-3">Results</h5>
         <div className="flex flex-col gap-2 mb-2">
           {[10, 2, 38].map((item, idx) => (

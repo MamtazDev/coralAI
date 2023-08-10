@@ -16,7 +16,7 @@ const ChartContainer = () => {
   const chart2Colors = ["#f77a55", "#f9bf59"];
 
   return (
-    <div className="grid grid-cols-2 mt-8">
+    <div className="grid grid-cols-1  md:grid-cols-2 gap-5 md:gap-0 mt-8">
       <div>
         <h5 className="text-lg font-[700]">Hard/Soft Coral</h5>
         <PieChart data={chart1Data} COLORS={chart1Colors} />

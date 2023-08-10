@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonsContainer = ({ setShowSignUpModal }) => {
   return (
-    <div className="border-t border-[#cccccc] p-[24px] flex justify-between gap-[10px]">
+    <div className="border-t border-[#cccccc] mt-[35px] p-[24px] flex justify-between gap-[10px]">
       <button className="rounded-[8px] border border-[#4368AA] w-full text-[16px] text-[#4368AA] font-[600] py-[12px]">
         Contact
       </button>

@@ -10,7 +10,7 @@ const AverageCoralCover = () => {
 
   const Colors = ["#f77a55", "#291f85", "#962dff"];
   return (
-    <div className=" p-[33px]">
+    <div className=" px-[33px]">
       <h5 className="text-[20px] font-[600]">Average Coral Cover</h5>
       <SinglePieChart data={Data} COLORS={Colors} />
       <div className="flex flex-col items-center gap-[15px]">

@@ -13,15 +13,15 @@ const Home = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   return (
     <>
-      <div className="container mx-auto my-[30px] h-[90vh] mainBox  grid grid-cols-5">
+      <div className="container mx-auto my-[30px] h-[90vh] mainBox grid grid-cols-1   lg:grid-cols-5">
         <div className="col-span-3 p-[25px]">
           <ImageContaienr setFeedbackModal={setFeedbackModal} />
           <ChartContainer />
         </div>
         <div className="border-l col-span-2 border-[#cccccc] ">
-          <div className="flex items-center gap-4 p-[25px] border-b border-[#cccccc] mb-3">
+          <div className="flex items-center gap-4 px-[25px] py-[15px] border-b border-[#cccccc] ">
             <FaArrowLeft className="text-[26px] font-[700]" />
-            <p className="text-2xl font-[700]">Live Coral Cover</p>
+            <p className="text-[24px] font-[700]">Live Coral Cover</p>
           </div>
           <Results />
           <AverageCoralCover />
