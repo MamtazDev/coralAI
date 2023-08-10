@@ -6,9 +6,11 @@ import Results from "../components/ui/Results";
 import AverageCoralCover from "../components/ui/AverageCoralCover";
 import ButtonsContainer from "../components/ui/ButtonsContainer";
 import FeedbackModal from "../components/modal/FeedbackModal";
+import SignUpModa from "../components/modal/SignUpModa";
 
 const Home = () => {
   const [showFeedbackModal, setFeedbackModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
   return (
     <>
       <div className="container mx-auto my-[10px] h-screen  shadow-2xl grid grid-cols-3">
@@ -23,13 +25,17 @@ const Home = () => {
           </div>
           <Results />
           <AverageCoralCover />
-          <ButtonsContainer />
+          <ButtonsContainer setShowSignUpModal={setShowSignUpModal} />
         </div>
       </div>
 
       <FeedbackModal
         setFeedbackModal={setFeedbackModal}
         showFeedbackModal={showFeedbackModal}
+      />
+      <SignUpModa
+        showSignUpModal={showSignUpModal}
+        setShowSignUpModal={setShowSignUpModal}
       />
     </>
   );
