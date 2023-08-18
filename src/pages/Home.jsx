@@ -13,7 +13,7 @@ const Home = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   return (
     <>
-      <div className="container mx-auto my-[30px] h-[90vh] mainBox grid grid-cols-1   lg:grid-cols-5">
+      <div className="container mx-auto my-[30px]  mainBox grid grid-cols-1   lg:grid-cols-5">
         <div className="col-span-3 p-[25px]">
           <ImageContaienr setFeedbackModal={setFeedbackModal} />
           <ChartContainer />
