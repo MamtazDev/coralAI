@@ -13,7 +13,7 @@ const ImageContaienr = ({ setFeedbackModal }) => {
 
         <button
           className="bg-[#4368aa] text-white py-2 px-3 rounded-[8px] font-[600]"
-          // onClick={() => setFeedbackModal(true)}
+          onClick={() => setFeedbackModal(true)}
         >
           Give feedback
         </button>
