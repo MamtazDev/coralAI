@@ -1,10 +1,15 @@
 import React from "react";
 import upload from "../../assets/images/upload.png";
 
-const UploadModal = () => {
+const UploadModal = ({ setShowUploadModal, showUploadModal }) => {
   return (
     <div>
-      <input checked type="checkbox" id="my_modal_6" className="modal-toggle" />
+      <input
+        checked={showUploadModal}
+        type="checkbox"
+        id="my_modal_6"
+        className="modal-toggle"
+      />
       <div className="modal ">
         <div className="modal-box max-w-[567px] p-[36px]">
           <div className="mx-auto max-w-[352px] mb-[24px]">

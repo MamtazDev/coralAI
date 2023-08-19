@@ -30,7 +30,7 @@ const SignUpModa = ({ showSignUpModal, setShowSignUpModal }) => {
                 placeholder="Input your name"
               />
             </div>
-            <div className="mb-[30px]">
+            {/* <div className="mb-[30px]">
               <label className="text-[16px] font-[600] text-[#666666] ">
                 Organizations
               </label>
@@ -39,7 +39,7 @@ const SignUpModa = ({ showSignUpModal, setShowSignUpModal }) => {
                 className="mt-[6px] w-full outline-none border border-[#CCC2C2] rounded-[4px] px-[19px] py-[13px]"
                 placeholder="Input your organization"
               />
-            </div>
+            </div> */}
             <div className="mb-[30px]">
               <label className="text-[16px] font-[600] text-[#666666] ">
                 Email

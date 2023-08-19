@@ -5,10 +5,10 @@ import Upload from "../pages/Upload";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Upload />,
   },
   {
     path: "/upload",
-    element: <Upload />,
+    element: <Home />,
   },
 ]);
