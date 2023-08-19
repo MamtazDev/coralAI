@@ -1,5 +1,6 @@
 import React from "react";
 import { PiUploadSimpleBold } from "react-icons/pi";
+import UploadModal from "../components/modal/UploadModal";
 
 const Upload = () => {
   return (
@@ -18,6 +19,8 @@ const Upload = () => {
           </figure>
         </div>
       </div>
+
+      <UploadModal />
     </div>
   );
 };
