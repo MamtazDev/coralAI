@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import coverPic from "../../assets/images/coverImage.png";
+import { FolderContext } from "../../contexts/FolderContext";
 
 const ImageContaienr = ({ setFeedbackModal }) => {
+  const { selectedImages, images } = useContext(FolderContext);
+
   return (
     <div>
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center gap-2">
           <RiCloseFill className="text-[26px] font-[700]" />
-          <p className="text-[20px] font-[700]">Image1.png</p>
+          <p className="text-[20px] font-[700]">
+            {selectedImages ? selectedImages.name : images[0].name}
+          </p>
         </div>
 
         <button
@@ -20,7 +25,15 @@ const ImageContaienr = ({ setFeedbackModal }) => {
       </div>
 
       <div className="h-[300px]">
-        <img src={coverPic} className="object-cover h-full w-full" alt="" />
+        <img
+          src={
+            selectedImages
+              ? URL.createObjectURL(selectedImages)
+              : URL.createObjectURL(images[0])
+          }
+          className="object-cover h-full w-full"
+          alt=""
+        />
       </div>
       <p className="mt-3 text-[#b8b7bf] font-[600]">
         The coral covered by soft coral
