@@ -139,14 +139,17 @@ const Upload = () => {
           </div>
         </div>
         {text === "Upload" ? (
-          <div className="mt-[27px] w-[221px] bg-[#4368AA] rounded-[8px] py-[12px] mx-auto">
+          <div className="mt-[27px] w-[235px]   mx-auto">
             <button
               onClick={handleUploading}
               disabled={uploading || images.length === 0}
-              className="w-full text-white text-[32px] font-[500]"
+              className="w-full text-white text-[32px] font-[500] bg-[#4368AA]  rounded-[8px] py-[12px]"
             >
               {text}
             </button>
+            <p className="mt-3 text-gray-400">
+              ( Upto 3 .jpg, .jpeg or .png files )
+            </p>
           </div>
         ) : (
           <div className="mt-[27px] w-[221px] bg-[#4368AA] rounded-[8px] py-[12px] mx-auto">
