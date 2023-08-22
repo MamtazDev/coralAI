@@ -3,7 +3,16 @@ import { FolderContext } from "../../contexts/FolderContext";
 
 const Results = ({ images }) => {
   // console.log(images, "gg");
-  const { setSelectedImages } = useContext(FolderContext);
+  const { setSelectedImages, setMasking, maskedImages } =
+    useContext(FolderContext);
+
+  const handleClick = (value) => {
+    setSelectedImages(value);
+
+    const image = maskedImages.find((i) => i.name === value.name);
+
+    setMasking(image);
+  };
   return (
     <div className="p-5 ">
       <div className="p-4 resultBox rounded-[6px]">
@@ -14,7 +23,7 @@ const Results = ({ images }) => {
               <div
                 className="flex justify-between items-center cursor-pointer"
                 key={idx}
-                onClick={() => setSelectedImages(item)}
+                onClick={() => handleClick(item)}
               >
                 <p className="text-[#857be0] font-[600]">{item?.name}</p>
                 <p className="font-[600]">{idx + 5}%</p>

@@ -1,10 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import coverPic from "../../assets/images/coverImage.png";
 import { FolderContext } from "../../contexts/FolderContext";
+import "./ImageContainer.css";
 
 const ImageContaienr = ({ setFeedbackModal }) => {
-  const { selectedImages, images } = useContext(FolderContext);
+  const { selectedImages, images, maskedImages, masking } =
+    useContext(FolderContext);
+
+  // console.log(maskedImages, "ffsfk");
+
+  // const handleHoverImage = () => {
+  //   const data = selectedImages ? selectedImages : images[0];
+  //   if (data.name === maskedImages.name) {
+  //     setMasking(maskedImages.output);
+  //   }
+  // };
 
   return (
     <div>
@@ -24,7 +35,7 @@ const ImageContaienr = ({ setFeedbackModal }) => {
         </button>
       </div>
 
-      <div className="h-[300px]">
+      <div className="h-[300px] tooltip ">
         <img
           src={
             selectedImages
@@ -34,6 +45,14 @@ const ImageContaienr = ({ setFeedbackModal }) => {
           className="object-cover h-full w-full"
           alt=""
         />
+
+        <div className="tooltiptext">
+          <img
+            src={masking ? masking.image : maskedImages[0].image}
+            // src={uploadimage}
+            alt=""
+          />
+        </div>
       </div>
       <p className="mt-3 text-[#b8b7bf] font-[600]">
         The coral covered by soft coral

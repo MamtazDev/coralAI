@@ -67,8 +67,6 @@ const Home = () => {
         </div>
       </div>
 
-      <button onClick={generatePDF}>Click here</button>
-
       <FeedbackModal
         setFeedbackModal={setFeedbackModal}
         showFeedbackModal={showFeedbackModal}

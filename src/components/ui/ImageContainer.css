@@ -1,0 +1,18 @@
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: 50px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

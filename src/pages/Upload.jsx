@@ -6,7 +6,8 @@ import { FolderContext } from "../contexts/FolderContext";
 import logo from "../../src/assets/images/logo.png";
 
 const Upload = () => {
-  const { setImages, images } = useContext(FolderContext);
+  const { setImages, images, setMaskImages, maskedImages } =
+    useContext(FolderContext);
 
   const [showUploadModal, setShowUploadModal] = useState(true);
   const [uploading, setUploading] = useState(false);
@@ -42,22 +43,35 @@ const Upload = () => {
     }
   };
 
-  const handleUploading = () => {
+  let defaultUrl = "https://api.reef.support";
+
+  const handleUploading = async () => {
     setUploading(true);
 
-    setTimeout(() => {
-      setUploading(false);
-      setText("Done");
-    }, 1500);
+    const uploadData = images.map((item) => {
+      const formData = new FormData();
+      formData.append("picture", item);
+      setText("Upload");
+      setUploading(true);
+      fetch(`${defaultUrl}/models/coral_ai/segmentation`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.output) {
+            setMaskImages((current) => [
+              ...current,
+              { image: data.output, name: item.name },
+            ]);
+
+            setUploading(false);
+            setText("Done");
+          }
+        });
+    });
   };
 
-  console.log(images, "jjkklll");
-
-  // console.log(selectedFiles, "gg");
-
-  // setTimeout(() => {
-  //   setShowUploadModal(false);
-  // }, 2000);
   return (
     <div className="container mx-auto">
       <img src={logo} alt="" className="max-w-[300px] mt-[50px]" />
@@ -128,7 +142,7 @@ const Upload = () => {
           <div className="mt-[27px] w-[221px] bg-[#4368AA] rounded-[8px] py-[12px] mx-auto">
             <button
               onClick={handleUploading}
-              disabled={!images}
+              disabled={uploading || images.length === 0}
               className="w-full text-white text-[32px] font-[500]"
             >
               {text}
