@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useRef } from "react";
 import ImageContaienr from "../components/ui/ImageContaienr";
 import ChartContainer from "../components/ui/ChartContainer";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -10,23 +11,44 @@ import SignUpModa from "../components/modal/SignUpModa";
 import { FolderContext } from "../contexts/FolderContext";
 import { useNavigate } from "react-router-dom";
 
+import html2pdf from "html2pdf.js";
+
 const Home = () => {
   const { images } = useContext(FolderContext);
 
   const [showFeedbackModal, setFeedbackModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const contentRef = useRef(null);
 
-  const navigate = useNavigate();
+  const generatePDF = () => {
+    if (contentRef.current) {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
 
-  // useEffect(() => {
-  //   if (images.length === 0) {
-  //     navigate("/");
-  //   }
-  // }, [images]);
+      const aspectRatio = screenWidth / screenHeight;
 
+      const opt = {
+        margin: 10,
+        filename: "my_webpage.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+          unit: "mm",
+          format: "a4",
+          orientation: aspectRatio > 1 ? "landscape" : "portrait",
+        },
+      };
+
+      html2pdf().from(contentRef.current).set(opt).save();
+    }
+  };
   return (
     <>
-      <div className="container mx-auto my-[30px]  mainBox grid grid-cols-1   lg:grid-cols-5">
+      <div
+        ref={contentRef}
+        id="content-to-export"
+        className="container mx-auto my-[30px]  mainBox grid grid-cols-1   lg:grid-cols-5"
+      >
         <div className="col-span-3 p-[25px]">
           <ImageContaienr setFeedbackModal={setFeedbackModal} images={images} />
           <ChartContainer />
@@ -38,9 +60,14 @@ const Home = () => {
           </div>
           <Results images={images} />
           <AverageCoralCover />
-          <ButtonsContainer setShowSignUpModal={setShowSignUpModal} />
+          <ButtonsContainer
+            generatePDF={generatePDF}
+            setShowSignUpModal={setShowSignUpModal}
+          />
         </div>
       </div>
+
+      <button onClick={generatePDF}>Click here</button>
 
       <FeedbackModal
         setFeedbackModal={setFeedbackModal}

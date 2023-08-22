@@ -1,10 +1,66 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import star from "../../assets/images/whiteStar.png";
 import yellowStar from "../../assets/images/yellowStar.png";
 
+
 const FeedbackModal = ({ showFeedbackModal, setFeedbackModal }) => {
   const [feedback, setFeedback] = useState(0);
+
   const [feedbackMessage, setFeedbackMessage] = useState(null);
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+
+  const subscriptionHandler = async () => {
+
+    if (!isValidEmail) {
+      console.error('Invalid email');
+      return;
+    }
+
+
+    const url = 'https://api.reef.support/contact';
+    const requestBody = {
+      full_name: "Dihan",
+      email: "nahid@gmail.com",
+      message: "hello"
+    };
+
+    try {
+      const response = await axios.post(url, requestBody);
+      console.log('Subscription response:', response.data["msg"]);
+      response.data["msg"] && setFeedbackModal(false);
+    } catch (error) {
+      console.error('Error subscribing:', error);
+    }
+
+
+  }
+
+
+
+
+  const handleEmailBlur = (e) => {
+    const enteredEmail = e.target.value;
+
+    if (!enteredEmail) {
+      setIsValidEmail(false);
+      return;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!emailRegex.test(enteredEmail)) {
+      setIsValidEmail(false);
+    } else {
+      setIsValidEmail(true);
+    }
+  };
+
+
   return (
     <div>
       <input
@@ -103,6 +159,33 @@ const FeedbackModal = ({ showFeedbackModal, setFeedbackModal }) => {
             </div>
           </div>
 
+          <div className="mb-[30px]">
+            <label className="text-[16px] font-[600] text-[#666666] ">
+              Name
+            </label>
+            <input onBlur={(e) => setName(e.target.value)}
+              type="text"
+              className="mt-[6px] w-full outline-none border border-[#CCC2C2] rounded-[4px] px-[19px] py-[13px]"
+              placeholder="Input your Name"
+            />
+          </div>
+          <div className="mb-[30px]">
+            <label className="text-[16px] font-[600] text-[#666666] ">
+              Email
+            </label>
+            <input onBlur={handleEmailBlur}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              className="mt-[6px] w-full outline-none border border-[#CCC2C2] rounded-[4px] px-[19px] py-[13px]"
+              placeholder="Input your Email"
+              required
+            />
+          {
+          !isValidEmail && <p style={{color:'red'}} >Enter valid email</p>
+          }
+          </div>
+
+
           <div className="mb-[48px]">
             <p className="text-[16px] font-[600] text-[#666] mb-[6px]">
               Description
@@ -123,11 +206,15 @@ const FeedbackModal = ({ showFeedbackModal, setFeedbackModal }) => {
               Cancel
             </button>
             <button
-              className={`w-full py-[12px] rounded-[8px] text-[16px] font-[600] text-white ${
-                feedbackMessage ? "bg-[#4368AA]" : "bg-[#cfcfd4]"
-              }`}
+              className={`w-full py-[12px] rounded-[8px] text-[16px] font-[600] text-white ${feedbackMessage ? "bg-[#4368AA]" : "bg-[#cfcfd4]"
+                }`}
               disabled={!feedbackMessage}
-              onClick={() => setFeedbackModal(false)}
+              onClick={() => {
+
+                // mailHandler();
+                subscriptionHandler()
+                // 
+              }}
             >
               Done
             </button>

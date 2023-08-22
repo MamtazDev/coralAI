@@ -3,6 +3,7 @@ import { PiUploadSimpleBold } from "react-icons/pi";
 import UploadModal from "../components/modal/UploadModal";
 import { Link } from "react-router-dom";
 import { FolderContext } from "../contexts/FolderContext";
+import logo from "../../src/assets/images/logo.png";
 
 const Upload = () => {
   const { setImages, images } = useContext(FolderContext);
@@ -58,7 +59,8 @@ const Upload = () => {
   //   setShowUploadModal(false);
   // }, 2000);
   return (
-    <div>
+    <div className="container mx-auto">
+      <img src={logo} alt="" className="max-w-[300px] mt-[50px]" />
       <div>
         <div className="max-w-[900px] mx-auto grid grid-cols-6 mt-[93px]">
           <div className="col-span-1 h-full px-3 flex flex-col gap-2 justify-between">
@@ -147,6 +149,9 @@ const Upload = () => {
         setShowUploadModal={setShowUploadModal}
         showUploadModal={showUploadModal}
       />
+      <p className="mt-[180px] text-end">
+        Copyright © 2023 Coral AI. All rights reserved.
+      </p>
     </div>
   );
 };

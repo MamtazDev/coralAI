@@ -19,7 +19,7 @@ const AverageCoralCover = () => {
           { value: 35, color: "#291f85" },
           { value: 65, color: "#962dff" },
         ].map((item, idx) => (
-          <div className="flex items-center gap-[7px]">
+          <div key ={idx} className="flex items-center gap-[7px]">
             <div
               className="h-[14px] w-[14px] rounded-full bg-[#F77A55]"
               style={{ backgroundColor: `${item.color}` }}
