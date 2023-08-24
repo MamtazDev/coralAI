@@ -6,7 +6,7 @@ import { FolderContext } from "../contexts/FolderContext";
 import logo from "../../src/assets/images/logo.png";
 
 const Upload = () => {
-  const { setImages, images, setMaskImages, maskedImages } =
+  const { setImages, images, setMaskImages, maskedImages, setChartData } =
     useContext(FolderContext);
 
   const [showUploadModal, setShowUploadModal] = useState(true);
@@ -14,6 +14,8 @@ const Upload = () => {
   const [text, setText] = useState("Upload");
 
   const inputRef = useRef(null);
+
+  console.log(images, "jff");
 
   // const [selectedFiles, setSelectedFiles] = useState(null);
 
@@ -59,13 +61,28 @@ const Upload = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.output) {
+          if (data.prediction) {
             setMaskImages((current) => [
               ...current,
-              { image: data.output, name: item.name },
+              {
+                image: data.prediction.output_mask,
+                name: item.name,
+                percentages: data.prediction.percentages,
+                item,
+              },
             ]);
 
-            setUploading(false);
+            setChartData((current) => [
+              ...current,
+              {
+                name: item.name.replace(/\.[^.]+$/, ""),
+                hardCoral:
+                  data.prediction?.percentages["hard corals"].toFixed(2),
+                softCoral:
+                  data.prediction?.percentages["soft corals"].toFixed(2),
+              },
+            ]),
+              setUploading(false);
             setText("Done");
           }
         });
@@ -120,7 +137,7 @@ const Upload = () => {
                 // onChange={handleFolderSelection}
                 onChange={handleFileChange}
                 className="hidden"
-                accept="image/*"
+                accept=".jpg, .jpeg, .png"
                 // multiple
               />
             </div>

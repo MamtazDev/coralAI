@@ -7,6 +7,7 @@ const FolderProvider = ({ children }) => {
   const [selectedImages, setSelectedImages] = useState(null);
   const [maskedImages, setMaskImages] = useState([]);
   const [masking, setMasking] = useState(null);
+  const [chartData, setChartData] = useState([]);
   const info = {
     images,
     setImages,
@@ -16,6 +17,8 @@ const FolderProvider = ({ children }) => {
     setMaskImages,
     masking,
     setMasking,
+    setChartData,
+    chartData,
   };
 
   return (
@@ -24,3 +27,15 @@ const FolderProvider = ({ children }) => {
 };
 
 export default FolderProvider;
+
+// const findAverage = () => {
+//   const average =
+//     maskedImages.reduce(
+//       (total, avg) => total + avg.percentages["hard corals"],
+//       0
+//     ) / maskedImages.length;
+
+//   return average;
+// };
+
+// <p className="font-[600]">{item?.percentages["hard corals"].toFixed(2)}%</p>;

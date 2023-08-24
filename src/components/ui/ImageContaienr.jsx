@@ -35,12 +35,12 @@ const ImageContaienr = ({ setFeedbackModal }) => {
         </button>
       </div>
 
-      <div className="h-[300px] tooltip ">
+      <div className="h-[300px] tooltip w-full">
         <img
           src={
             selectedImages
-              ? URL.createObjectURL(selectedImages)
-              : URL.createObjectURL(images[0])
+              ? URL.createObjectURL(selectedImages.item)
+              : URL.createObjectURL(maskedImages[0].item)
           }
           className="object-cover h-full w-full"
           alt=""
@@ -51,6 +51,7 @@ const ImageContaienr = ({ setFeedbackModal }) => {
             src={masking ? masking.image : maskedImages[0].image}
             // src={uploadimage}
             alt=""
+            className="object-cover h-full w-full"
           />
         </div>
       </div>

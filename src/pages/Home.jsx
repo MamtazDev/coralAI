@@ -34,7 +34,7 @@ const Home = () => {
         html2canvas: { scale: 2 },
         jsPDF: {
           unit: "mm",
-          format: "a4",
+          format: "ledger",
           orientation: aspectRatio > 1 ? "landscape" : "portrait",
         },
       };
@@ -42,6 +42,8 @@ const Home = () => {
       html2pdf().from(contentRef.current).set(opt).save();
     }
   };
+
+  console.log(images, "fjkjfk");
   return (
     <>
       <div
