@@ -12,46 +12,14 @@ import {
 } from "recharts";
 import { FolderContext } from "../../contexts/FolderContext";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-  },
-];
-
 const BarChartBar = () => {
   const { chartData } = useContext(FolderContext);
+
+  const yAxisTickValues = [0, 20, 40, 60, 80, 100];
+  const yAxisDomain = [0, 20, 40, 60, 80, 100];
+
+  const formatYAxisTick = (tick) => `${tick}%`;
+
   return (
     <div className="h-[300px] w-full">
       {chartData.length > 0 && (
@@ -69,7 +37,11 @@ const BarChartBar = () => {
           >
             <CartesianGrid strokeWidth={0.5} />
             <XAxis dataKey="name" />
-            <YAxis />
+            <YAxis
+              ticks={yAxisTickValues}
+              domain={yAxisDomain}
+              tickFormatter={formatYAxisTick}
+            />
             <Legend />
             <Bar dataKey="hardCoral" stackId="a" fill="#63b2fd" />
             <Bar dataKey="softCoral" stackId="a" fill="#9be0c4" />
