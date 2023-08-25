@@ -32,8 +32,14 @@ const Upload = () => {
   // };
 
   const handleFileChange = (event) => {
-    setImages([...images, event.target.files[0]]);
+    let length = event.target.files.length <= 3 ? event.target.files.length : 3;
+
+    for (let i = 0; i < length; i++) {
+      setImages((current) => [...current, event.target.files[i]]);
+    }
   };
+
+  console.log(images);
 
   const handleClick = () => {
     inputRef.current.click();
@@ -50,7 +56,7 @@ const Upload = () => {
   const handleUploading = async () => {
     setUploading(true);
 
-    const uploadData = images.map((item) => {
+    const uploadData = images.slice(0, 3).map((item) => {
       const formData = new FormData();
       formData.append("picture", item);
       setText("Upload");
@@ -86,6 +92,7 @@ const Upload = () => {
             setText("Done");
           }
         });
+      // .catch((error) => handleError());
     });
   };
 
@@ -138,15 +145,15 @@ const Upload = () => {
                 onChange={handleFileChange}
                 className="hidden"
                 accept=".jpg, .jpeg, .png"
-                // multiple
+                multiple
               />
             </div>
             <div className="max-w-[390px] mx-auto pb-[140px]">
               {uploading && (
                 <figure>
-                  <div class="progress">
+                  <div className="progress">
                     <div
-                      class="progress-bar progress-bar-info progress-bar-striped active"
+                      className="progress-bar progress-bar-info progress-bar-striped active"
                       style={{ width: "100%" }}
                     ></div>
                   </div>
@@ -156,7 +163,7 @@ const Upload = () => {
           </div>
         </div>
         {text === "Upload" ? (
-          <div className="mt-[27px] w-[235px]   mx-auto">
+          <div className="mt-[27px] max-w-[240px]   mx-auto">
             <button
               onClick={handleUploading}
               disabled={uploading || images.length === 0}
@@ -165,7 +172,7 @@ const Upload = () => {
               {text}
             </button>
             <p className="mt-3 text-gray-400">
-              ( Upto 3 .jpg, .jpeg or .png files )
+              ( Up to 3 .jpg, .jpeg or .png files )
             </p>
           </div>
         ) : (
@@ -184,7 +191,7 @@ const Upload = () => {
         showUploadModal={showUploadModal}
       />
       <p className="mt-[180px] text-end">
-        Copyright © 2023 Coral AI. All rights reserved.
+        Copyright © 2023 Reef Support B.V. All rights reserved.
       </p>
     </div>
   );

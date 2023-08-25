@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import PieChart from "./PieChart";
+import { FolderContext } from "../../contexts/FolderContext";
 
 const ChartContainer = () => {
+  const { maskedImages, selectedImages } = useContext(FolderContext);
+
   const chart1Data = [
-    { name: "Hard Coral", value: 78 },
-    { name: "Soft Coral", value: 22 },
+    {
+      name: "Hard Coral",
+      value: selectedImages
+        ? Number(selectedImages.percentages["hard corals"].toFixed(2))
+        : Number(maskedImages[0].percentages["hard corals"].toFixed(2)),
+    },
+    {
+      name: "Soft Coral",
+      value: selectedImages
+        ? Number(selectedImages.percentages["soft corals"].toFixed(2))
+        : Number(maskedImages[0].percentages["soft corals"].toFixed(2)),
+    },
   ];
+
+  console.log(chart1Data, "chart");
 
   const chart2Data = [
     { name: "Coral", value: 48 },
@@ -24,12 +39,12 @@ const ChartContainer = () => {
           <div className="flex gap-2 items-center">
             <div className="h-[16px] w-[16px] bg-[#962dff] rounded-full"></div>
             <p className="text-[#cbcace] font-[600]">Hard coral</p>
-            <p className=" font-[700]">78%</p>
+            <p className=" font-[700]">{chart1Data[0].value}%</p>
           </div>
           <div className="flex gap-2 items-center">
             <div className="h-[16px] w-[16px] bg-[#e0c6fd] rounded-full"></div>
             <p className="text-[#cbcace] font-[600]">Soft coral</p>
-            <p className=" font-[700]">22%</p>
+            <p className=" font-[700]">{chart1Data[1].value}%</p>
           </div>
         </div>
       </div>

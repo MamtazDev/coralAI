@@ -19,7 +19,9 @@ const Results = ({ images }) => {
   const findAverage = () => {
     const average =
       maskedImages.reduce(
-        (total, avg) => total + avg.percentages["hard corals"],
+        (total, avg) =>
+          total +
+          (avg.percentages["hard corals"] + avg.percentages["soft corals"]),
         0
       ) / maskedImages.length;
 
@@ -41,7 +43,11 @@ const Results = ({ images }) => {
               >
                 <p className="text-[#857be0] font-[600]">{item?.name}</p>
                 <p className="font-[600]">
-                  {item?.percentages["hard corals"].toFixed(2)}%
+                  {(
+                    item?.percentages["hard corals"] +
+                    item?.percentages["soft corals"]
+                  ).toFixed(2)}
+                  %
                 </p>
               </div>
             ))}
