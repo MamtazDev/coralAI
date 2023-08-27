@@ -22,6 +22,8 @@ const Upload = () => {
   }, 2000);
   return (
     <div>
+
+      <img src="https://reef-support-storage.s3.amazonaws.com//app/resources/deployment_requests/652ec6a8-9c79-40b9-a062-e8beacecb863/output/5676fd52-9853-46bd-85bc-704fb8c1ee69.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX5DA6CRXLV3RUYDH%2F20230822%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230822T120137Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9253b2ddee5fca591a2d259875881ac30e3c39c35e2775b860cabb2654d216d4" alt="" />
       <div className="max-w-[770px] bg-[#F3F3F3] rounded-[20px] mx-auto mt-[93px]">
         <div className="pt-[139px] pb-[27px]">
           <PiUploadSimpleBold className="mx-auto w-[73px] h-[73px] " />
