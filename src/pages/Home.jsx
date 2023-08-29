@@ -11,10 +11,7 @@ import SignUpModa from "../components/modal/SignUpModa";
 import { FolderContext } from "../contexts/FolderContext";
 import { useNavigate } from "react-router-dom";
 
-// import html2pdf from "html2pdf.js";
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-
+import html2pdf from "html2pdf.js";
 
 const Home = () => {
   const { images } = useContext(FolderContext);
@@ -23,24 +20,27 @@ const Home = () => {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const contentRef = useRef(null);
 
+  const generatePDF = () => {
+    if (contentRef.current) {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
 
-//   const screenWidth = window.screen.width; // Width of the screen in pixels
-// const screenHeight = window.screen.height; // Height of the screen in pixels
-// const aspectRatio = screenWidth / screenHeight;
+      const aspectRatio = screenWidth / screenHeight;
 
+      const opt = {
+        margin: 10,
+        filename: "my_webpage.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+          unit: "mm",
+          format: "ledger",
+          orientation: aspectRatio > 1 ? "landscape" : "portrait",
+        },
+      };
 
-  const generatePDF =  () => {
-    const input = document.getElementById('pdf-content'); // Replace 'pdf-content' with the ID of the element you want to capture
-
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png'); // Convert canvas to base64 image data
-        const pdf = new jsPDF('p', 'mm', 'a4'); // Create a new PDF instance
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight); // Add image to PDF
-        pdf.save('webpage.pdf'); // Save the PDF
-      });
+      html2pdf().from(contentRef.current).set(opt).save();
+    }
   };
 
   console.log(images, "fjkjfk");
@@ -82,66 +82,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-// new print page 
-// import React from 'react';
-// import html2canvas from 'html2canvas';
-// import jsPDF from 'jspdf';
-
-// class PDFGenerator extends React.Component {
-//   generatePDF = () => {
-//     const input = document.getElementById('pdf-content'); // Replace 'pdf-content' with the ID of the element you want to capture
-
-//     html2canvas(input)
-//       .then((canvas) => {
-//         const imgData = canvas.toDataURL('image/png'); // Convert canvas to base64 image data
-//         const pdf = new jsPDF('p', 'mm', 'a4'); // Create a new PDF instance
-
-//         const pdfWidth = pdf.internal.pageSize.getWidth();
-//         const pdfHeight = pdf.internal.pageSize.getHeight();
-//         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight); // Add image to PDF
-//         pdf.save('webpage.pdf'); // Save the PDF
-
-//       });
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         {/* Your React component */}
-//         <div id="pdf-content">
-//           {/* Content you want to capture */}
-//         </div>
-//         <button onClick={this.generatePDF}>Generate PDF</button>
-//       </div>
-//     );
-//   }
-// }
-
-// export default PDFGenerator;
-
-
-// ager print function 
-
-
-// import React from 'react';
-
-// class PrintButton extends React.Component {
-//   handlePrint = () => {
-//     window.print();
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         <button onClick={this.handlePrint}>Print</button>
-//         <p>This is the content you want to print.</p>
-//         {/* Add your screen content here */}
-//       </div>
-//     );
-//   }
-// }
-
-// export default PrintButton;
