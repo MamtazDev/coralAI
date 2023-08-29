@@ -12,6 +12,14 @@ const UploadModal = ({ setShowUploadModal, showUploadModal }) => {
       />
       <div className="modal ">
         <div className="modal-box max-w-[567px] p-[36px]">
+          <div className="text-end">
+            <p
+              className="font-semibold text-[20px] cursor-pointer"
+              onClick={() => setShowUploadModal(false)}
+            >
+              &#10005;
+            </p>
+          </div>
           <div className="mx-auto max-w-[352px] mb-[24px]">
             <img src={upload} alt="" />
           </div>

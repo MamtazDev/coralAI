@@ -1,5 +1,6 @@
 import React from "react";
 import SinglePieChart from "./PieChart";
+import BarChart from "./BarChart";
 
 const AverageCoralCover = () => {
   const Data = [
@@ -12,14 +13,17 @@ const AverageCoralCover = () => {
   return (
     <div className=" px-[33px]">
       <h5 className="text-[20px] font-[600]">Average Coral Cover</h5>
-      <SinglePieChart data={Data} COLORS={Colors} />
+      {/* <SinglePieChart data={Data} COLORS={Colors} /> */}
+
+      <BarChart></BarChart>
+
       <div className="flex flex-col items-center gap-[15px]">
         {[
           { value: 15, color: "#f77a55" },
           { value: 35, color: "#291f85" },
           { value: 65, color: "#962dff" },
         ].map((item, idx) => (
-          <div key ={idx} className="flex items-center gap-[7px]">
+          <div key={idx} className="flex items-center gap-[7px]">
             <div
               className="h-[14px] w-[14px] rounded-full bg-[#F77A55]"
               style={{ backgroundColor: `${item.color}` }}
